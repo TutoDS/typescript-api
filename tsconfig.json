@@ -5,7 +5,7 @@
 		"lib": ["es6"],
 		"allowJs": true,
 		"outDir": "./dist",
-		"rootDir": "./",
+		"rootDir": "./src",
 		"removeComments": true,
 		"typeRoots": [
 			"./node_modules/@types"
@@ -22,7 +22,8 @@
 			"@models/*": ["./src/models/*"],
 			"@views/*": ["./src/views/*"],
 			"@routes/*": ["./src/routes/*"],
-			"@config/*": ["./src/config/*"]
+			"@config/*": ["./scripts/config/*"],
+			"@mails/*": ["./scripts/mails/*"]
 		}
 	},
 	"include": [
