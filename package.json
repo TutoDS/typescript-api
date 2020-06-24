@@ -1,0 +1,25 @@
+{
+	"name": "typescript-api-with-nodejs",
+	"version": "1.0.0",
+	"description": "API builded with TypeScript and NodeJS",
+	"main": "app.ts",
+	"author": "Daniel Sousa <jdaniel.asousa@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "ts-node-dev --respawn --transpileOnly --no-notify app.ts"
+	},
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"ejs": "^3.1.3",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.20",
+		"typescript": "^3.9.5"
+	},
+	"devDependencies": {
+		"ts-node-dev": "^1.0.0-pre.49",
+		"@types/koa": "^2.11.3",
+		"koa": "^2.13.0",
+		"koa-router": "^9.0.1"
+	}
+}
