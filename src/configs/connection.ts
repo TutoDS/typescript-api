@@ -1,6 +1,5 @@
 // DotEnv
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 const { MONGO_PORT = 27017, MONGO_HOST = 'localhost', MONGO_DB = 'covidApi' } = process.env;
 
 // Mongoose
@@ -17,6 +16,6 @@ export default mongoose.connect(
 		useFindAndModify: false,
 	},
 	(error) => {
-		console.log(error ? `[ERROR: ${error}]` : '[MONGOOSE CONECTED WITH SUCCESS]');
+		console.log(error ? `[ERROR: ${error}]` : '[MONGOOSE CONNECTED WITH SUCCESS]');
 	}
 );

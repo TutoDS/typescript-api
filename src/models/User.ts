@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types, Document } from 'mongoose';
-import Role, { IRole } from './Role';
+import Role, { IRole } from '@models/Role';
 
 export interface IUser extends Document {
 	name: string;

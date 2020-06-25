@@ -1,9 +1,8 @@
 // Monogoose Connection
-import { mongoose } from '@config/mongoose';
+import '@config/connection';
 
 // DotEnv
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 const { PORT = 3000 } = process.env;
 
 // Koa
@@ -18,12 +17,13 @@ import router from './src/routes';
 const app = new Koa();
 
 app
-	.use(mongoose)
 	// Logger
 	.use(logger)
 
 	// API Routes
 	.use(router.routes())
+
+	// Server port
 	.listen(PORT, () => {
 		console.log(`[SERVER RUN ON PORT ${PORT}]`);
 	});

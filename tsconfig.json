@@ -20,36 +20,43 @@
 		"emitDecoratorMetadata": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"paths": {
+			"@root/*": [
+				"*"
+			],
 			"@controllers/*": [
-				"/src/controllers/*"
+				"src/controllers/*"
 			],
 			"@docs/*": [
-				"/src/docs/*"
+				"src/docs/*"
 			],
 			"@models/*": [
-				"/src/models/*"
+				"src/models/*"
 			],
 			"@middlewares/*": [
-				"/src/middlewares/*"
+				"src/middlewares/*"
 			],
 			"@views/*": [
-				"/src/views/*"
+				"src/views/*"
 			],
 			"@routes/*": [
-				"/src/routes/*"
+				"src/routes/*"
 			],
 			"@config/*": [
-				"/scripts/config/*"
+				"src/configs/*"
 			],
 			"@mails/*": [
-				"/scripts/mails/*"
+				"src/scripts/mails/*"
+			],
+			"@uploads/*": [
+				"uploads/*"
 			]
 		}
 	},
 	"include": [
-		"src/**/*",
-		"scripts/**/*"
+		"app.ts",
+		"**/*",
+		"src/**/*"
 	]
 }
