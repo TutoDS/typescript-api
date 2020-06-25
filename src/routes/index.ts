@@ -1,14 +1,16 @@
 import Router from 'koa-router';
 import userRoutes from './users';
 
-const router = new Router({ prefix: '/api' })
+const router = new Router({ prefix: '/api' });
 
 router
+	// Base path
 	.get('/', (ctx, next) => {
-		ctx.status = 200
-		ctx.body = { status: "Ok" }
+		ctx.status = 200;
+		ctx.body = { status: 'API Working Fine!' };
 	})
-	.use(userRoutes.routes())
 
+	// User Routes
+	.use(userRoutes.routes());
 
-export default router
+export default router;

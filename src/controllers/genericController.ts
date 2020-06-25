@@ -6,11 +6,10 @@
  *
  */
 export class GenericController {
-
 	/**
 	 * Model used on queries
 	 */
-	private model: any
+	private model: any;
 
 	/**
 	 * Constructor Method
@@ -21,9 +20,9 @@ export class GenericController {
 		this.model = model
 	}
 
-
+	/**
+	 * Method to get all results on database
+	 */
 	public getAll() {
-
-
 	}
 }

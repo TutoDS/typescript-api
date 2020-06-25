@@ -1,10 +1,16 @@
+// DotEnv
+import dotenv from 'dotenv';
+dotenv.config();
+const { PORT } = process.env;
+
+// Koa
 import Koa from 'koa';
+
+// Routes
 import router from './src/routes';
 
-const app = new Koa()
+const app = new Koa();
 
-app
-	.use(router.routes())
-	.listen(3000, () => {
-		console.log("RUN SERVER!")
-	})
+app.use(router.routes()).listen(PORT, () => {
+	console.log(`[SERVER RUN ON PORT ${PORT}]`);
+});
