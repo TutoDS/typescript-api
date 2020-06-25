@@ -1,3 +1,5 @@
+import * as Koa from 'koa';
+
 /**
  * Generic GenericController
  *
@@ -5,7 +7,7 @@
  * getAll; getOneById; getOneAndDelete; getOneAndUpdate;
  *
  */
-export class GenericController {
+export default class GenericController {
 	/**
 	 * Model used on queries
 	 */
@@ -17,12 +19,15 @@ export class GenericController {
 	 * @param model model used on queries
 	 */
 	constructor(model: any) {
-		this.model = model
+		this.model = model;
 	}
 
 	/**
 	 * Method to get all results on database
 	 */
-	public getAll() {
+	public getAll(ctx: Koa.Context) {
+		console.log('Teste!');
+		ctx.status = 200;
+		ctx.body = { data: 'ok!' };
 	}
 }

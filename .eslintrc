@@ -1,0 +1,65 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json",
+		"tsconfigRootDir": "./"
+	},
+	"rules": {
+		"no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "next"
+			}
+		],
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": true
+			}
+		],
+		"import/no-mutable-exports": 0,
+		"no-labels": 0,
+		"no-restricted-syntax": 0
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:prettier/recommended"
+	],
+	"extends": [
+		"airbnb-typescript/base",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:eslint-comments/recommended",
+		"plugin:promise/recommended",
+		"prettier",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	],
+	"settings": {
+		"import/extensions": [
+			".js",
+			".jsx",
+			".ts",
+			".tsx"
+		],
+		"import/parsers": {
+			"@typescript-eslint/parser": [
+				".ts",
+				".tsx"
+			]
+		},
+		"import/resolver": {
+			"typescript": {},
+			"node": {
+				"extensions": [
+					".js",
+					".jsx",
+					".ts",
+					".tsx"
+				]
+			}
+		}
+	}
+}

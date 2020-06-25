@@ -3,7 +3,7 @@ import userRoutes from './users';
 
 const router = new Router({ prefix: '/api' });
 
-router
+export default router
 	// Base path
 	.get('/', (ctx, next) => {
 		ctx.status = 200;
@@ -12,5 +12,3 @@ router
 
 	// User Routes
 	.use(userRoutes.routes());
-
-export default router;
