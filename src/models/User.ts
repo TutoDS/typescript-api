@@ -1,5 +1,6 @@
-import mongoose, { Schema, Types, Document } from 'mongoose';
+import mongoose, { Schema, Types, Document, SchemaTypeOpts } from 'mongoose';
 import Role, { IRole } from '@models/Role';
+
 export interface IUser extends Document {
 	name: string;
 	email: string;
@@ -17,7 +18,7 @@ const userSchema = new Schema(
 			type: String,
 			validate: {
 				validator(data) {
-					return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data);
+					return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data);
 				},
 				message: (props) => `${props.value} is not a valid email!`,
 			},
@@ -27,14 +28,6 @@ const userSchema = new Schema(
 		role: {
 			type: Types.ObjectId,
 			ref: Role,
-			validate: {
-				async validator(data) {
-					const role = Role.countDocuments({ _id: data });
-
-					return role;
-				},
-				message: (props) => `${props.value} is not a valid role!`,
-			},
 			required: [true, 'Role is required!'],
 		},
 		password: {
@@ -44,7 +37,20 @@ const userSchema = new Schema(
 			unique: true,
 		},
 	},
-	{ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
+	{ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } },
 );
+
+/**
+ * Role validation
+ *
+ * Validate if rle id choiced exists on roles table
+ */
+userSchema
+	.path('role')
+	.validate(
+		(role: any) => Role.countDocuments({ _id: role }),
+		((props: SchemaTypeOpts.ValidateOpts) =>
+			`Role ${props} is not valid. Please change and try again.`).toString(),
+	);
 
 export default mongoose.model<IUser>('User', userSchema);

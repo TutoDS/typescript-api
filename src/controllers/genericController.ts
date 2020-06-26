@@ -26,7 +26,6 @@ export default class GenericController {
 	 * Method to get all results on database
 	 */
 	public getAll(ctx: Koa.Context) {
-		console.log('Teste!');
 		ctx.status = 200;
 		ctx.body = { data: 'ok!' };
 	}

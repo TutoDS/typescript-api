@@ -11,7 +11,7 @@ import Koa from 'koa';
 import apiRoutes from '@allRoutes';
 
 // Middlewares
-import logger from '@middlewares/logger';
+import logger from '@root/src/middleware/logger';
 
 const { PORT = 3000 } = process.env;
 
