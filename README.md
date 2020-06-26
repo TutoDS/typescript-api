@@ -4,6 +4,7 @@
 
 -   TypeScript
 -   NodeJS
--   Express
+-   Koa
 -   Jest <small>(for tests)</small>
 -   Babel <small>(for build)</small>
+-   Swagger
