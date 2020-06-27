@@ -40,12 +40,10 @@ const userSchema = new Schema(
 	{ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } },
 );
 
-/**
- * Role validation
- *
- * Validate if rle id choiced exists on roles table
- */
 userSchema
+	/**
+	 * Validate if role id exists on database
+	 */
 	.path('role')
 	.validate(
 		(role: any) => Role.countDocuments({ _id: role }),
