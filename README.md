@@ -1,10 +1,13 @@
-# API with TypeScript and NodeJS
+# Rest API using **NodeJS + Koa + TypeScript**
 
 ## Topics
 
--   TypeScript
--   NodeJS
--   Koa
--   Jest <small>(for tests)</small>
--   Babel <small>(for build)</small>
--   Swagger
+On this project can find topics below:
+
+*   TypeScript
+*   NodeJS
+*   Koa
+    -   Koa Router <small>(create routers like **ExpressJS** - `router.get('endpoint', method)` )</small>
+*   Jest <small>(for tests)</small>
+*   Babel <small>(for build)</small>
+*   Swagger

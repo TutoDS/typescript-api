@@ -1,10 +1,26 @@
 {
-	"name": "typescript-api-with-nodejs",
+	"name": "rest-node-koa-typescript",
 	"version": "1.0.0",
-	"description": "API builded with TypeScript and NodeJS",
-	"main": "app.ts",
-	"author": "Daniel Sousa <jdaniel.asousa@gmail.com>",
+	"description": "API REST using NodeJS, KOA framework and TypesScript. Database used is MongoDB.",
+	"main": "dist/app.js",
+	"author": "Daniel Sousa",
+	"repository": "https://github.com/TutoDS/typescript-api",
+	"home": "https://github.com/TutoDS/typescript-api#readme",
 	"license": "MIT",
+	"engines": {
+		"node": "12.x.x",
+		"npm": "6.x.x"
+	},
+	"keywords": [
+		"typescript",
+		"nodejs",
+		"koa",
+		"swagger",
+		"jest",
+		"mongoose",
+		"mongodb",
+		"api"
+	],
 	"scripts": {
 		"dev": "ts-node-dev -r tsconfig-paths/register --watch '**/*.ts,**/*.json' --respawn --transpileOnly --no-notify --ignore-watch node_modules app.ts",
 		"lint": "eslint . --ext ts,tsx",
