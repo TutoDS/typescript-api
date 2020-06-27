@@ -1,19 +1,21 @@
 // Monogoose Connection
 import '@config/connection';
 
-// DotEnv
-import 'dotenv/config';
+// Config
+import config from '@config';
 
 // Koa
 import Koa from 'koa';
+// --> Body Parser
+import bodyParser from 'koa-bodyparser';
+// --> Cors
+import cors from 'koa2-cors';
 
 // Routes
-import apiRoutes from '@allRoutes';
+import apiRoutes from '@routes';
 
-// Middlewares
+// Middleware
 import logger from '@root/src/middleware/logger';
-
-const { PORT = 3000 } = process.env;
 
 const app = new Koa();
 
@@ -21,10 +23,16 @@ app
 	// Logger
 	.use(logger)
 
+	// Body Parser
+	.use(bodyParser())
+
+	// Cors
+	.use(cors())
+
 	// API Routes
 	.use(apiRoutes.routes())
 
 	// Server port
-	.listen(PORT, () => {
-		console.log(`[SERVER RUN ON PORT ${PORT}]`);
+	.listen(config.port, () => {
+		console.log(`[SERVER RUN ON ${config.port}]`);
 	});

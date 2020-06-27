@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import { Context } from 'koa';
 
 /**
  * Generic GenericController
@@ -25,8 +25,11 @@ export default class GenericController {
 	/**
 	 * Method to get all results on database
 	 */
-	public getAll(ctx: Koa.Context) {
+	public getAll(ctx: Context, next: () => Promise<any>) {
+		this.model.find({});
+
 		ctx.status = 200;
 		ctx.body = { data: 'ok!' };
+		next();
 	}
 }

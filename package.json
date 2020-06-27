@@ -23,9 +23,11 @@
 		"api"
 	],
 	"scripts": {
-		"dev": "ts-node-dev -r tsconfig-paths/register --watch '**/*.ts,**/*.json' --respawn --transpileOnly --no-notify --ignore-watch node_modules app.ts",
+		"dev": "ts-node-dev -r tsconfig-paths/register --watch '**/*.ts,**/*.json' --respawn --transpileOnly --ignore-watch node_modules app.ts",
 		"lint": "eslint . --ext ts,tsx",
-		"lint:fix": "eslint . --ext ts,tsx --fix"
+		"lint:fix": "eslint . --ext ts,tsx --fix",
+		"setup:dev": "ts-node -r tsconfig-paths/register ./src/scripts/setup/index.ts",
+		"setup": "node ./dist/src/scripts/setup/index.ts"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.2",

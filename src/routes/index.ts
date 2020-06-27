@@ -12,7 +12,7 @@ export default router
 	})
 
 	// User Routes
-	
+
 	.use(userRoutes.routes())
 	// Authentication Routes
 	.use(authRoutes.routes());

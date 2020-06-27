@@ -25,6 +25,21 @@
 			"@root/*": [
 				"*"
 			],
+			"@controllers": [
+				"src/controllers/index.ts"
+			],
+			"@docs": [
+				"src/docs/index.ts"
+			],
+			"@models": [
+				"src/models/index.ts"
+			],
+			"@middleware": [
+				"src/middleware/index.ts"
+			],
+			"@views": [
+				"src/views/index.ts"
+			],
 			"@controllers/*": [
 				"src/controllers/*"
 			],
@@ -40,11 +55,14 @@
 			"@views/*": [
 				"src/views/*"
 			],
+			"@routes": [
+				"src/routes"
+			],
 			"@routes/*": [
 				"src/routes/*"
 			],
-			"@allRoutes": [
-				"src/routes"
+			"@config": [
+				"src/configs/index.ts",
 			],
 			"@config/*": [
 				"src/configs/*"

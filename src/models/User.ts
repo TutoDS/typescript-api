@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, Document, SchemaTypeOpts } from 'mongoose';
+import mongoose, { Schema, Document, SchemaTypeOpts } from 'mongoose';
 import Role, { IRole } from '@models/Role';
 
 export interface IUser extends Document {
@@ -26,7 +26,7 @@ const userSchema = new Schema(
 			unique: [true, 'This email already exists'],
 		},
 		role: {
-			type: Types.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: Role,
 			required: [true, 'Role is required!'],
 		},

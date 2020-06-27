@@ -1,14 +1,11 @@
 // DotEnv
-import 'dotenv/config';
-const { MONGO_PORT = 27017, MONGO_HOST = 'localhost', MONGO_DB = 'covidApi' } = process.env;
+import config from '@config';
 
 // Mongoose
 import mongoose from 'mongoose';
 
-const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
-
 export default mongoose.connect(
-	url,
+	`mongodb://${config.dbHost}:${config.dbPort}/${config.dbName}`,
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
@@ -17,5 +14,5 @@ export default mongoose.connect(
 	},
 	(error) => {
 		console.log(error ? `[ERROR: ${error}]` : '[MONGOOSE CONNECTED WITH SUCCESS]');
-	}
+	},
 );
