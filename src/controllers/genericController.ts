@@ -32,4 +32,21 @@ export default class GenericController {
 		ctx.body = { data: 'ok!' };
 		next();
 	}
+
+	public getByID(ctx: Context, next: () => Promise<any>) {
+		const id = ctx.params.id;
+
+		this.model.findOne({ _id: id }).then(
+			(success) => {
+				ctx.status = 200;
+				ctx.body = success;
+			},
+			(error) => {
+				ctx.status = 400;
+				ctx.body = error;
+			},
+		);
+
+		next();
+	}
 }

@@ -1,4 +1,4 @@
-// Monogoose Connection
+// Mongoose Connection
 import '@config/connection';
 
 // Config

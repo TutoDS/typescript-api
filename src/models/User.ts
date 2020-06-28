@@ -53,7 +53,7 @@ userSchema
 	 */
 	.path('role')
 	.validate(
-		(role: any) => Role.countDocuments({ _id: role }),
+		(role: IRole) => Role.countDocuments({ _id: role }),
 		((props: mongoose.SchemaTypeOpts.ValidateOpts) =>
 			`Role ${props} is not valid. Please change and try again.`).toString(),
 	);
@@ -82,7 +82,7 @@ userSchema
 		this: IUser,
 		next: () => Promise<any>,
 	) {
-		if (this.getUpdate().password ) {
+		if (this.getUpdate().password) {
 			this.getUpdate().password = await bcrypt.hash(this._update.password, 10);
 		}
 
