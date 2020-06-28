@@ -1,9 +1,8 @@
-import mongoose, { Schema, Document, Types } from 'mongoose';
-
+import mongoose, { Schema, model, Document, Types } from 'mongoose';
 
 export interface IRole extends Document {
 	name: string;
-	scopes: string;
+	scopes: Array<string>;
 }
 
 const roleSchema = new Schema({
@@ -31,4 +30,4 @@ const roleSchema = new Schema({
 	],
 });
 
-export default mongoose.model<IRole>('Role', roleSchema);
+export default model<IRole>('Role', roleSchema);

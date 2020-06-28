@@ -10,6 +10,8 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 // --> Cors
 import cors from 'koa2-cors';
+// --> Koa Static
+import serve from 'koa-static';
 
 // Routes
 import apiRoutes from '@routes';
@@ -20,6 +22,10 @@ import logger from '@root/src/middleware/logger';
 const app = new Koa();
 
 app
+	// Static Files
+	.use(serve(__dirname + '/public'))
+	.use(serve(__dirname + '/uploads'))
+
 	// Logger
 	.use(logger)
 

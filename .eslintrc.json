@@ -1,19 +1,19 @@
 {
-	"env": {
-		"es6": true,
-		"node": true
-	},
-	"extends": [
-		"airbnb-base"
-	],
+	"root": true,
 	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"project": "./tsconfig.json"
-	},
 	"plugins": [
 		"@typescript-eslint"
 	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
 	"rules": {
+		"semi": [
+			2,
+			"always"
+		],
 		"indent": [
 			2,
 			"tab",
@@ -23,10 +23,5 @@
 			}
 		],
 		"no-tabs": 0
-	},
-	"settings": {
-		"import/resolver": {
-			"typescript": {}
-		}
 	}
 }

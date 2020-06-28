@@ -1,18 +1,19 @@
 // Config Vars (.env)
 import config from '@config';
-const { adminName, adminEmail, adminPwd } = config;
 
 // Mongoose Connection
 import connection from '@config/connection';
 
 // List of Roles
-import roles from './roles.json';
 
 // Molds
 import Role from '@models/Role';
 import User from '@models/User';
 
 import { exit } from 'process';
+import roles from './roles.json';
+
+const { adminName, adminEmail, adminPwd } = config;
 
 connection
 	.then(async (mongoose) => {
@@ -41,17 +42,17 @@ connection
 					name: adminName,
 					email: adminEmail,
 					password: adminPwd,
-					role: adminRole['_id'],
+					role: adminRole._id,
 				}).save();
 
 				// Print USER DATA
-				console.log(`\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+				console.log('\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 				console.log(`NAME:  ${adminName}`);
 				console.log(`EMAIL: ${adminEmail}`);
 				console.log(`PASSWORD: ${adminPwd}`);
-				console.log(`ROLE: ADMIN`);
-				console.log(`SCOPES: All`);
-				console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`);
+				console.log('ROLE: ADMIN');
+				console.log('SCOPES: All');
+				console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 			}
 
 			console.log('\n[SETUP DONE]');
