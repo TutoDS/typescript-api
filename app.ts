@@ -42,14 +42,6 @@ app
 	// API Routes
 	.use(apiRoutes.routes())
 
-	// Swagger Documentation
-	.use(
-		swagger.koa({
-			route: '/docs',
-			swagger: docs,
-		}),
-	)
-
 	// Server port
 	.listen(config.port, () => {
 		console.log(`[SERVER RUN ON ${config.port}]`);

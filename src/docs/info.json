@@ -1,8 +1,0 @@
-{
-	"swagger": "2.0",
-	"info": {
-		"description": "Documentation of API to <b>COVID Tracking System</b>",
-		"version": "1.0.0",
-		"title": "COVID Tracking System - Documentation"
-	}
-}

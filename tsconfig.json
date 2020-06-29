@@ -28,9 +28,6 @@
 			"@controllers": [
 				"src/controllers/index.ts"
 			],
-			"@docs": [
-				"src/docs/index.ts"
-			],
 			"@models": [
 				"src/models/index.ts"
 			],
@@ -42,9 +39,6 @@
 			],
 			"@controllers/*": [
 				"src/controllers/*"
-			],
-			"@docs/*": [
-				"src/docs/*"
 			],
 			"@models/*": [
 				"src/models/*"
