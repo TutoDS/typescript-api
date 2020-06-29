@@ -72,6 +72,12 @@
 			],
 			"@uploads/*": [
 				"uploads/*"
+			],
+			"@packages/*": [
+				"./node_modules/*"
+			],
+			"@public/*": [
+				"./public/*"
 			]
 		}
 	},

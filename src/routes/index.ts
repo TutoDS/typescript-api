@@ -10,9 +10,7 @@ export default router
 		ctx.status = 200;
 		ctx.body = { status: 'API Working Fine!' };
 	})
-
-// User Routes
-
+	// User Routes
 	.use(userRoutes.routes())
 	// Authentication Routes
 	.use(authRoutes.routes());

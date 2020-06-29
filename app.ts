@@ -19,12 +19,16 @@ import apiRoutes from '@routes';
 // Middleware
 import logger from '@root/src/middleware/logger';
 
+// Documentation
+import swagger from 'swagger-injector';
+import docs from '@docs';
+
 const app = new Koa();
 
 app
 	// Static Files
-	.use(serve(__dirname + '/public'))
-	.use(serve(__dirname + '/uploads'))
+	.use(serve(`${__dirname}/public`))
+	.use(serve(`${__dirname}/uploads`))
 
 	// Logger
 	.use(logger)
@@ -37,6 +41,13 @@ app
 
 	// API Routes
 	.use(apiRoutes.routes())
+
+	.use(
+		swagger.koa({
+			route: '/docs',
+			swagger: docs,
+		}),
+	)
 
 	// Server port
 	.listen(config.port, () => {
