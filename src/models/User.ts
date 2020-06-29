@@ -1,21 +1,22 @@
 // Mongoose Imports
-import * as mongoose from 'mongoose';
+import { Document, model, Schema, Query, SchemaTypeOpts } from 'mongoose';
 
 // Bcrypt
 import bcrypt from 'bcryptjs';
-const salt = bcrypt.genSaltSync(10);
+const SALT_FACTOR = 10;
+const salt = bcrypt.genSaltSync(SALT_FACTOR);
 
 // Role Model
 import Role, { IRole } from '@models/Role';
 
-export interface IUser extends mongoose.Document {
+export interface IUser extends Document {
 	name: string;
 	email: string;
 	role: IRole['_id'];
 	password: string;
 }
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -33,7 +34,7 @@ const userSchema = new mongoose.Schema(
 			unique: [true, 'This email already exists'],
 		},
 		role: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: Schema.Types.ObjectId,
 			ref: Role,
 			required: [true, 'Role is required!'],
 		},
@@ -54,7 +55,7 @@ userSchema
 	.path('role')
 	.validate(
 		(role: IRole) => Role.countDocuments({ _id: role }),
-		((props: mongoose.SchemaTypeOpts.ValidateOpts) =>
+		((props: SchemaTypeOpts.ValidateOpts) =>
 			`Role ${props} is not valid. Please change and try again.`).toString(),
 	);
 
@@ -79,11 +80,11 @@ userSchema
 
 	// Update Passowrd Hash
 	.pre(/^(updateOne|update|findOneAndUpdate)$/, async function (
-		this: IUser,
+		this: Query<IUser>,
 		next: () => Promise<any>,
 	) {
 		if (this.getUpdate().password) {
-			this.getUpdate().password = await bcrypt.hash(this._update.password, 10);
+			this.update({}, { password: bcrypt.hashSync(this.getUpdate().password, SALT_FACTOR) });
 		}
 
 		next();
@@ -95,4 +96,4 @@ userSchema
 		next();
 	});
 
-export default mongoose.model<IUser>('User', userSchema);
+export default model<IUser>('User', userSchema);

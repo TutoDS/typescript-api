@@ -42,6 +42,7 @@ app
 	// API Routes
 	.use(apiRoutes.routes())
 
+	// Swagger Documentation
 	.use(
 		swagger.koa({
 			route: '/docs',
