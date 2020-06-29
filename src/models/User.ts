@@ -78,8 +78,8 @@ userSchema
 		next();
 	})
 
-	// Update Passowrd Hash
-	.pre(/^(updateOne|update|findOneAndUpdate)$/, async function (
+	// Update Password Hash
+	.pre(/^(updateOne|update|findOneAndUpdate)$/, function (
 		this: Query<IUser>,
 		next: () => Promise<any>,
 	) {
@@ -91,8 +91,8 @@ userSchema
 	})
 
 	// Action on Pre Save
-	.pre('save', async function (this: IUser, next: () => Promise<any>) {
-		this.password = await bcrypt.hash(this.password, salt);
+	.pre('save', function (this: IUser, next: () => Promise<any>) {
+		this.password = bcrypt.hashSync(this.password, salt);
 		next();
 	});
 
