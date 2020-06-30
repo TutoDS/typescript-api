@@ -4,19 +4,19 @@ import config from '@config';
 // Mongoose Connection
 import connection from '@config/connection';
 
-// List of Roles
+// List of roles with scopes
+import roles from './roles.json';
 
-// Molds
+// Models
 import Role from '@models/Role';
 import User from '@models/User';
 
 import { exit } from 'process';
-import roles from './roles.json';
 
 const { adminName, adminEmail, adminPwd } = config;
 
 connection
-	.then(async (mongoose) => {
+	.then(async () => {
 		try {
 			console.log('[SETUP START]');
 
