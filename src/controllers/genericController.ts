@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { Model } from 'mongoose';
+import { Model, Document } from 'mongoose';
 /**
  * Generic GenericController
  *
@@ -11,15 +11,14 @@ export default class GenericController {
 	/**
 	 * Model used on queries
 	 */
-	private model: Model<any>; // TODO: Fix any
+	private model: Model<Document>;
 
 	/**
 	 * Constructor Method
 	 *
 	 * @param model model used on queries
 	 */
-	// TODO: Fix any
-	constructor(model: Model<any>) {
+	constructor(model: Model<Document>) {
 		this.model = model;
 	}
 
