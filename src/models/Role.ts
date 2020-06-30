@@ -5,29 +5,32 @@ export interface IRole extends Document {
 	scopes: Array<string>;
 }
 
-const roleSchema = new Schema({
-	name: {
-		type: String,
-		required: true,
-		enum: ['ADMIN', 'TECHNIC'],
-		unique: true,
-	},
-	scopes: [
-		{
+const roleSchema = new Schema(
+	{
+		name: {
 			type: String,
-			enum: [
-				'--view-all',
-				'--create-all',
-				'--edit-all',
-				'--delete-all',
-				'--view-users',
-				'--create-users',
-				'--edit-users',
-				'--delete-users',
-			],
-			default: '--view-all',
+			required: true,
+			enum: ['ADMIN', 'TECHNIC'],
+			unique: true,
 		},
-	],
-});
+		scopes: [
+			{
+				type: String,
+				enum: [
+					'--view-all',
+					'--create-all',
+					'--edit-all',
+					'--delete-all',
+					'--view-users',
+					'--create-users',
+					'--edit-users',
+					'--delete-users',
+				],
+				default: '--view-all',
+			},
+		],
+	},
+	{ versionKey: false },
+);
 
 export default model<IRole>('Role', roleSchema);
