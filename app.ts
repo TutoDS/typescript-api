@@ -19,10 +19,6 @@ import apiRoutes from '@routes';
 // Middleware
 import logger from '@root/src/middleware/logger';
 
-// Documentation
-import swagger from 'swagger-injector';
-import docs from '@docs';
-
 const app = new Koa();
 
 app
