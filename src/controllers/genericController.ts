@@ -11,7 +11,7 @@ export default class GenericController {
 	/**
 	 * Model used on queries
 	 */
-	private model: any; // TODO: Fix any
+	private model: Model<any>; // TODO: Fix any
 
 	/**
 	 * Constructor Method
@@ -19,7 +19,7 @@ export default class GenericController {
 	 * @param model model used on queries
 	 */
 	// TODO: Fix any
-	constructor(model: any) {
+	constructor(model: Model<any>) {
 		this.model = model;
 	}
 
