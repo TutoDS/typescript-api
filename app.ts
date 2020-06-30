@@ -13,11 +13,14 @@ import cors from 'koa2-cors';
 // --> Koa Static
 import serve from 'koa-static';
 
+// Middleware
+//	--> Error Handler
+import errorHandler from '@middleware/errorHandler';
+//	--> Logger
+import logger from '@middleware/logger';
+
 // Routes
 import apiRoutes from '@routes';
-
-// Middleware
-import logger from '@root/src/middleware/logger';
 
 const app = new Koa();
 
@@ -28,6 +31,9 @@ app
 
 	// Logger
 	.use(logger)
+
+	// Error Handler
+	.use(errorHandler)
 
 	// Body Parser
 	.use(bodyParser())

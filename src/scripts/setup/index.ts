@@ -41,21 +41,21 @@ connection
 				console.log('[ADMIN ALREADY EXISTS]');
 			} else {
 				const adminRole = await Role.findOne({ name: 'ADMIN' });
-				console.log(adminRole);
+				
 				await new User({
 					name: adminName,
 					email: adminEmail,
 					password: adminPwd,
-					role: adminRole._id,
+					role: adminRole['_id'],
 				}).save();
 
 				// Print USER DATA
 				console.log('\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-				console.log(`NAME:  ${adminName}`);
-				console.log(`EMAIL: ${adminEmail}`);
-				console.log(`PASSWORD: ${adminPwd}`);
-				console.log('ROLE: ADMIN');
-				console.log('SCOPES: All');
+				console.log(`📍NAME:  ${adminName}`);
+				console.log(`📍EMAIL: ${adminEmail}`);
+				console.log(`📍PASSWORD: ${adminPwd}`);
+				console.log('📍ROLE: ADMIN');
+				console.log('📍SCOPES: All');
 				console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 			}
 
@@ -63,7 +63,7 @@ connection
 		} catch (error) {
 			console.error(error);
 		}
-		// Stop TS-Node
+		// Stop Setup Execution
 		exit();
 	})
 	.catch(console.error);

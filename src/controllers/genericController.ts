@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-
+import { Model } from 'mongoose';
 /**
  * Generic GenericController
  *
@@ -11,13 +11,14 @@ export default class GenericController {
 	/**
 	 * Model used on queries
 	 */
-	private model: any;
+	private model: any; // TODO: Fix any
 
 	/**
 	 * Constructor Method
 	 *
 	 * @param model model used on queries
 	 */
+	// TODO: Fix any
 	constructor(model: any) {
 		this.model = model;
 	}
@@ -25,12 +26,15 @@ export default class GenericController {
 	/**
 	 * Method to get all results on database
 	 */
-	public getAll(ctx: Context, next: () => Promise<any>) {
-		this.model.find({});
+	public async getAll(ctx: Context, next: () => Promise<any>) {
+		try {
+			const allData = await this.model.find({});
 
-		ctx.status = 200;
-		ctx.body = { data: 'ok!' };
-		next();
+			ctx.status = 200;
+			ctx.body = allData;
+		} catch (error) {
+			ctx.throw(500, 'teste!');
+		}
 	}
 
 	public getByID(ctx: Context, next: () => Promise<any>) {
