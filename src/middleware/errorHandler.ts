@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import config from '@config';
 
 export default async (ctx, next) => {
 	return next().catch((err) => {
@@ -13,7 +13,6 @@ export default async (ctx, next) => {
 			statusCode: statusCode || 500,
 			message,
 		};
-
 		ctx.app.emit('error', err, ctx);
 	});
 };

@@ -19,7 +19,7 @@ export default class GenericController {
 	 * @param model model used on queries
 	 */
 	constructor(model: Model<Document>) {
-		this.model = model;
+		this.model = undefined;
 	}
 
 	/**
@@ -32,23 +32,23 @@ export default class GenericController {
 			ctx.status = 200;
 			ctx.body = allData;
 		} catch (error) {
-			ctx.throw(500, 'teste!');
+			ctx.throw(500, error);
 		}
 	}
 
-	public getByID(ctx: Context, next: () => Promise<any>) {
-		const id = ctx.params.id;
+	public async getByID(ctx: Context, next: () => Promise<any>) {
+		try {
+			const { id } = ctx.params;
 
-		this.model.findOne({ _id: id }).then(
-			(success) => {
-				ctx.status = 200;
-				ctx.body = success;
-			},
-			(error) => {
-				ctx.status = 400;
-				ctx.body = error;
-			},
-		);
+			const founded = await this.model.findOne({ _id: id });
+
+			if (Object.keys(founded).length == 0) ctx.throw(404, 'Not Found');
+
+			ctx.status = 200;
+			ctx.body = founded;
+		} catch (catchError) {
+			ctx.throw(catchError);
+		}
 
 		next();
 	}

@@ -10,6 +10,7 @@ const {
 	ADMIN_PWD,
 	ADMIN_EMAIL,
 	SECRET,
+	ENV,
 } = process.env;
 
 export interface IConfig {
@@ -21,6 +22,7 @@ export interface IConfig {
 	adminEmail: string;
 	adminPwd: string;
 	secret: string;
+	env: string;
 }
 
 const config: IConfig = {
@@ -39,5 +41,8 @@ const config: IConfig = {
 
 	// Secret string to JWT
 	secret: SECRET || 'my-jwt-secret-2020#api',
+
+	// ENV: Production or Development (prod or dev)
+	env: ENV || 'prod',
 };
 export default config;
