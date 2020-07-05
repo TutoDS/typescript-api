@@ -23,6 +23,7 @@ export interface IConfig {
 	adminPwd: string;
 	secret: string;
 	env: string;
+	isDev: boolean;
 }
 
 const config: IConfig = {
@@ -44,5 +45,7 @@ const config: IConfig = {
 
 	// ENV: Production or Development (prod or dev)
 	env: ENV || 'prod',
+
+	isDev: (ENV || 'prod') == 'dev',
 };
 export default config;

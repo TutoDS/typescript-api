@@ -19,13 +19,14 @@ export default class GenericController {
 	 * @param model model used on queries
 	 */
 	constructor(model: Model<Document>) {
-		this.model = undefined;
+		this.model = model;
 	}
 
 	/**
 	 * Method to get all results on database
 	 */
-	public async getAll(ctx: Context, next: () => Promise<any>) {
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public async getAll(ctx: Context) {
 		try {
 			const allData = await this.model.find({});
 
@@ -36,20 +37,31 @@ export default class GenericController {
 		}
 	}
 
-	public async getByID(ctx: Context, next: () => Promise<any>) {
+	/**
+	 * Method to get one result by id on database
+	 */
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public async getByID(ctx: Context) {
 		try {
 			const { id } = ctx.params;
 
 			const founded = await this.model.findOne({ _id: id });
 
-			if (Object.keys(founded).length == 0) ctx.throw(404, 'Not Found');
+			if (Object.keys(founded).length == 0)
+				ctx.throw(404, `${this.model.modelName} not found`);
 
 			ctx.status = 200;
 			ctx.body = founded;
 		} catch (catchError) {
-			ctx.throw(catchError);
-		}
+			let message = catchError;
+			let code = 500;
 
-		next();
+			if (catchError.kind == 'ObjectId') {
+				message = `${this.model.modelName} not found`;
+				code = 404;
+			}
+
+			ctx.throw(code || 500, message || catchError);
+		}
 	}
 }
