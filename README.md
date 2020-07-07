@@ -5,7 +5,7 @@
 On this project can find topics below:
 
 *   TypeScript
-    *   All`@types` needed (**like:** `@types/bcryptjs`, `@types/mongoose`, ...)
+    *   All `@types` needed (**like:** `@types/bcryptjs`, `@types/mongoose`, ...)
 *   NodeJS
 *   Koa
     -   Koa Router <small>(create routes like **ExpressJS** - `router.get('endpoint', method)` )</small>

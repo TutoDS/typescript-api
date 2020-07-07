@@ -14,6 +14,7 @@ export interface IUser extends Document {
 	email: string;
 	role: IRole['_id'];
 	password: string;
+	comparePassword(password): boolean;
 }
 
 const userSchema = new Schema(
@@ -45,7 +46,7 @@ const userSchema = new Schema(
 			unique: true,
 		},
 	},
-	{ versionKey: false, timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } },
+	{ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } },
 );
 
 userSchema
@@ -60,10 +61,6 @@ userSchema
 	);
 
 // Custom Methods
-userSchema.methods.getRole = function () {
-	return this.role.name;
-};
-
 userSchema.methods.comparePassword = function (pwd, callback) {
 	return bcrypt.compare(pwd, this.password, callback);
 };
