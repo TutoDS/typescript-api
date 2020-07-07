@@ -16,7 +16,7 @@ const { secret } = config;
  */
 export default class UserController {
 	private ctx: Context;
-	private expireTime: number = 60 * 5;
+	private expireTime: number = 60000 * 5;
 	private user: typeof User;
 
 	constructor() {
@@ -27,7 +27,7 @@ export default class UserController {
 		try {
 			// Generate Token
 			const jwtToken = await jwt.sign(data, secret, {
-				expiresIn: time || this.expireTime,
+				expiresIn: `${time || this.expireTime}ms`,
 			});
 
 			return jwtToken;
@@ -41,7 +41,9 @@ export default class UserController {
 		const userFounded = await this.user.findOne({ email: email });
 
 		try {
+			// Compare Password (method on User Model)
 			if (await userFounded.comparePassword(password)) {
+				// Create a new object without properties like password (to send on token)
 				const user = {
 					email: userFounded.email,
 					name: userFounded.name,
@@ -49,12 +51,11 @@ export default class UserController {
 					scopes: userFounded.role.scopes,
 				};
 
+				// Create Token
 				const token = this.generateToken(user);
 
-				console.log(new Date(this.expireTime + Date.now()));
-
 				ctx.cookies.set('session', await token, {
-					expires: new Date(this.expireTime + Date.now()),
+					expires: new Date(Date.now() + this.expireTime),
 				});
 
 				ctx.status = 200;
