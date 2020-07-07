@@ -60,7 +60,7 @@ export default class UserController {
 				ctx.status = 200;
 				ctx.body = {
 					auth: true,
-					token: token,
+					token: await token,
 					user: user,
 					message: 'Login with success',
 				};
