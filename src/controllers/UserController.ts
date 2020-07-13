@@ -1,18 +1,19 @@
 import { Context } from 'koa';
-import { Model, Document } from 'mongoose';
-
-import User, { IUser } from '@models/User';
-
+import User from '@models/User';
 import jwt from 'jsonwebtoken';
 
-/**
- * Get Config Data
- */
+// Get data by Config
 import config from '@config';
 const { secret } = config;
 
 /**
+ * User Controller
  *
+ * Methods:
+ * startSession (to login)
+ * resetPassword (to request a reset password)
+ * changePassword (to change password using token generated on resetPassword)
+ * updatePassword (update password using older password to validate)
  */
 export default class UserController {
 	private ctx: Context;
@@ -23,6 +24,11 @@ export default class UserController {
 		this.user = User;
 	}
 
+	/**
+	 * Generate JWT Token
+	 * @param data fields/field to send on JWT Token
+	 * @param time expires time (if null, is used the expireTime variable)
+	 */
 	private async generateToken(data: any, time?: number) {
 		try {
 			// Generate Token
@@ -32,7 +38,7 @@ export default class UserController {
 
 			return jwtToken;
 		} catch (catchError) {
-			this.ctx.throw(408, catchError);
+			this.ctx.throw(500, catchError);
 		}
 	}
 
@@ -73,6 +79,30 @@ export default class UserController {
 					user: {},
 					message: 'Invalid Credentials',
 				};
+			}
+		} catch (catchError) {
+			ctx.throw(500, catchError);
+		}
+	}
+
+	public async create(ctx: Context) {
+		const body = ctx.request.body;
+
+		try {
+			const newUser = await new User(body).save();
+
+			if (await newUser) {
+				const token = jwt.sign({ email: newUser.email }, secret, { expiresIn: 60 * 5 });
+
+				// TODO: Send new user email
+
+				ctx.status = 201;
+				ctx.body = {
+					status: 201,
+					user: newUser,
+				};
+			} else {
+				ctx.throw(400, `Error on create User`);
 			}
 		} catch (catchError) {
 			ctx.throw(500, catchError);
