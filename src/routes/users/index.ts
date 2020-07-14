@@ -13,4 +13,5 @@ const userRouter = new Router({ prefix: '/users' });
 export default userRouter
 	.get('/', controller.getAll.bind(controller))
 	.post('/', userController.create.bind(userController))
-	.get('/:id', controller.getByID.bind(controller));
+	.get('/:id', controller.getByID.bind(controller))
+	.put('/:id', controller.getOneAndUpdate.bind(controller))

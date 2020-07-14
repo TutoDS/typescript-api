@@ -23,6 +23,27 @@ export default class GenericController {
 	}
 
 	/**
+	 * Method to insert a new record on database
+	 */
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public async create(ctx: Context) {
+		try {
+			const { body } = ctx.request.body;
+
+			const newModel = await new this.model(body).save();
+
+			if (newModel) {
+				ctx.status = 200;
+				ctx.body = newModel;
+			} else {
+				ctx.throw(400, `Error on create ${this.model.modelName}`);
+			}
+		} catch (error) {
+			ctx.throw(500, error);
+		}
+	}
+
+	/**
 	 * Method to get all results on database
 	 */
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -62,6 +83,34 @@ export default class GenericController {
 			}
 
 			ctx.throw(code || 500, message || catchError);
+		}
+	}
+
+	/**
+	 * Method to get one and update with new data
+	 */
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public async getOneAndUpdate(ctx: Context) {
+		try {
+			const { id } = ctx.params;
+			const { body } = ctx.request.body;
+
+			const founded = await this.model.findOne({ _id: id });
+
+			// Record exists
+			if (founded) {
+				const updated = await founded.updateOne(body, {
+					runValidators: true,
+					new: true,
+				});
+
+				ctx.body = updated;
+				ctx.status = 200;
+			} else {
+				ctx.throw(404, `${this.model.modelName} not found!`);
+			}
+		} catch (error) {
+			ctx.throw(500, error);
 		}
 	}
 }
