@@ -35,7 +35,7 @@ const config: IConfig = {
 	dbPort: +(MONGO_PORT || 27017),
 	dbName: MONGO_DB || 'covidAPI',
 
-	// Admin Data (withou defaults)
+	// Admin Data (without defaults)
 	adminName: ADMIN_USER,
 	adminEmail: ADMIN_EMAIL,
 	adminPwd: ADMIN_PWD,

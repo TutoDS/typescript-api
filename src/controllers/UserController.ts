@@ -94,7 +94,7 @@ export default class UserController {
 			if (await newUser) {
 				const token = jwt.sign({ email: newUser.email }, secret, { expiresIn: 60 * 5 });
 
-				// TODO: Send new user email
+				// TODO: Send new user email with token to set password
 
 				ctx.status = 201;
 				ctx.body = {
