@@ -1,5 +1,7 @@
 # Rest API using **NodeJS + Koa + TypeScript**
 
+This project is for study new things and improve some skills.
+
 ## Topics
 
 On this project can find topics below:
