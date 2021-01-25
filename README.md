@@ -1,5 +1,7 @@
 # Rest API using **NodeJS + Koa + TypeScript**
 
+![Status](https://img.shields.io/badge/Status-In%20Progress%20%2F%20Incomplete-informational)
+
 This project is for study new things and improve some skills.
 
 ## Topics
