@@ -14,6 +14,5 @@ On this project can find topics below:
     -   Koa Cors
     -   Koa BodyParser
     -   Koa Static <small>(to using `serve()` on static folders - like **public folder**)</small>
-*   Jest <small>(for tests)</small>
 *   Babel <small>(for build)</small>
 *   EJS <small>(used on emails - create partials to use on multiple emails)<small>
